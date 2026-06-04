@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+
+# Data files (too large for GitHub)
+backend/data/*.csv
+
+# Node
+frontend/node_modules/
+frontend/.next/
