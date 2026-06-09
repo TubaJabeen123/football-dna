@@ -10,9 +10,11 @@ A full-stack football analytics web application that lets fans, coaches, and sco
 
 ---
 
+🌐 **Live Demo:** [http://56.228.18.16](http://56.228.18.16)
+
 ## 🖼️ What It Does
 
-Football DNA is a **SofaScore-style** analytics platform built on top of FIFA 22 player ratings. Designed for football fans, not data scientists — every number, chart, and prediction is explained in plain football language.
+Football DNA is a analytics platform built on top of FIFA 22 player ratings. Designed for football fans — every number, chart, and prediction is explained in plain football language.
 
 ### Pages
 
@@ -138,7 +140,7 @@ football-dna/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/football-dna.git
+git clone https://github.com/TubaJabeen123/football-dna.git
 cd football-dna
 ```
 
