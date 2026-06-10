@@ -10,7 +10,7 @@ A full-stack football analytics web application that lets fans, coaches, and sco
 
 ---
 
-🌐 **Live Demo:** [http://56.228.18.16](http://56.228.18.16)
+🌐 **Live Demo:** [https://football-dna.duckdns.org](https://football-dna.duckdns.org)
 
 ## 🖼️ What It Does
 
