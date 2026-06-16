@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useMemo } from "react";
 import Sidebar from "@/components/Sidebar";
-import { getPlaystyleTags } from "@/components/Playstyletags";
+import { getPlaystyleTags } from "@/lib/utils";
 
 const BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
 

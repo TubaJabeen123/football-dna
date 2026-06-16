@@ -1,52 +1,43 @@
-const BASE = "http://127.0.0.1:8000/api";  // ← use 127.0.0.1 not localhost
+import { Player, SimilarPlayer, MatchResult } from "@/types";
 
+const BASE = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000/api";
 
-export async function getAllPlayers() {
-  const res = await fetch(`${BASE}/players`);
-  if (!res.ok) throw new Error("Failed to fetch players");
+async function fetchJSON<T>(url: string, options?: RequestInit): Promise<T> {
+  const res = await fetch(url, options);
+  if (!res.ok) throw new Error(`HTTP ${res.status}: ${url}`);
   return res.json();
 }
 
-export async function getPlayer(name: string) {
-  const res = await fetch(`${BASE}/player/${encodeURIComponent(name)}`);
-  if (!res.ok) throw new Error("Failed to fetch player");
-  return res.json();
+export async function getAllPlayers(): Promise<{ players: Player[] }> {
+  return fetchJSON(`${BASE}/players`);
 }
 
-export async function comparePlayers(player1: string, player2: string) {
-  const res = await fetch(`${BASE}/compare`, {
+export async function getPlayer(name: string): Promise<Player> {
+  return fetchJSON(`${BASE}/player/${encodeURIComponent(name)}`);
+}
+
+export async function comparePlayers(
+  player1: string, player2: string
+): Promise<{ player1: Player; player2: Player }> {
+  return fetchJSON(`${BASE}/compare`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ player1, player2 }),
   });
-  if (!res.ok) throw new Error("Failed to compare players");
-  return res.json();
 }
 
-export async function getSimilarPlayers(name: string) {
-  const res = await fetch(`${BASE}/similar/${encodeURIComponent(name)}`);
-  if (!res.ok) throw new Error("Failed to get similar players");
-  return res.json();
-}
-export async function getNations() {
-  const res = await fetch(`${BASE}/nations`);
-  if (!res.ok) throw new Error("Failed to fetch nations");
-  return res.json();
+export async function getSimilarPlayers(name: string): Promise<SimilarPlayer[]> {
+  return fetchJSON(`${BASE}/similar/${encodeURIComponent(name)}`);
 }
 
-export async function analyzeMatch(teamA: string, teamB: string) {
-  const res = await fetch(`${BASE}/match`, {
+export async function getNations(): Promise<{ nations: string[] }> {
+  return fetchJSON(`${BASE}/nations`);
+}
+
+export async function analyzeMatch(teamA: string, teamB: string): Promise<MatchResult> {
+  return fetchJSON(`${BASE}/match`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      teamA,
-      teamB,
-    }),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ teamA, teamB }),
   });
-
-  if (!res.ok) throw new Error("Failed to analyze match");
-
-  return res.json();
 }
